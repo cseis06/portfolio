@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
 const transition = {
     type: 'spring',
@@ -22,7 +22,7 @@ export const MenuItem = ({
     setActive: (item: string) => void;
     active: string | null;
     item: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
 }) => {
     return (
         <div onMouseEnter={() => setActive(item)} className="relative ">
@@ -54,6 +54,7 @@ export const MenuItem = ({
 };
 
 export const Menu = ({ setActive, children }: { setActive: (item: string | null) => void; children: React.ReactNode }) => {
+    // children intentionally typed as ReactNode to allow any menu content
     return (
         <nav
             onMouseLeave={() => setActive(null)} // resets the state
@@ -76,7 +77,7 @@ export const ProductItem = ({ title, description, href, src }: { title: string; 
     );
 };
 
-export const HoveredLink = ({ children, ...rest }: any) => {
+export const HoveredLink = ({ children, ...rest }: ComponentProps<typeof Link>) => {
     return (
         <Link {...rest} className="flex items-center text-neutral-700 hover:text-neutral-400 dark:text-neutral-200">
             {children}

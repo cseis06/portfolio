@@ -1,8 +1,6 @@
 import Link from 'next/link';
-import React from 'react';
 import { FaReact, FaJs, FaPython, FaNodeJs } from 'react-icons/fa';
 import { SiTailwindcss, SiNextdotjs, SiMongodb, SiMysql, SiFlask } from 'react-icons/si';
-import { TbBrandNextjs } from 'react-icons/tb';
 
 import { EvervaultCard, Icon } from '@/components/ui/evervault-card';
 
