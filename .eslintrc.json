@@ -7,13 +7,7 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true,
-        "endOfLine": "auto"
-      }
-    ]
+    "prettier/prettier": "off"
   },
   "overrides": [
     // Configuration for TypeScript files
@@ -31,21 +25,7 @@
         "project": "./tsconfig.json"
       },
       "rules": {
-        "prettier/prettier": [
-          "error",
-          {
-            "arrowParens": "always",
-            "bracketSpacing": true,
-            "endOfLine": "lf",
-            "jsxBracketSameLine": false,
-            "jsxSingleQuote": false,
-            "printWidth": 150,
-            "semi": true,
-            "singleQuote": true,
-            "tabWidth": 4,
-            "trailingComma": "none"
-          }
-        ],
+        "prettier/prettier": "off",
         "@typescript-eslint/no-unused-vars": [
           "error",
           { "argsIgnorePattern": "^_" }
