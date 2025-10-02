@@ -6,6 +6,7 @@ import {
   SiMysql,
   SiNextdotjs,
   SiTailwindcss,
+  SiTypescript,
 } from "react-icons/si";
 
 import { EvervaultCard, Icon } from "@/components/ui/evervault-card";
@@ -80,9 +81,9 @@ const skills = [
     icon: <FaPython />,
   },
   {
-    title: "Flask",
-    link: "https://flask.palletsprojects.com/",
-    icon: <SiFlask />,
+    title: "TypeScript",
+    link: "https://www.typescriptlang.org/",
+    icon: <SiTypescript />,
   },
   {
     title: "MySQL",
