@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { JetBrains_Mono, Space_Grotesk, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -14,10 +14,17 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600"],
 });
 
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+});
+
 export const metadata: Metadata = {
-  title: "Portfolio | Frontend Developer",
+  title: "Dani Brunetto | Web Developer",
   description:
-    "Crafting interfaces from the future — a frontend developer portfolio.",
+    "Crafting interfaces from the future — Dani Brunetto's web developer portfolio.",
 };
 
 export default function RootLayout({
@@ -28,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${jetbrainsMono.variable} ${spaceGrotesk.variable} antialiased`}
+        className={`${jetbrainsMono.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable} antialiased`}
       >
         {children}
       </body>
