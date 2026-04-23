@@ -10,7 +10,6 @@ import type { Project } from "@/components/TVScene";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* Dynamic import — R3F cannot SSR */
 const TVScene = dynamic(() => import("@/components/TVScene"), { ssr: false });
 
 /* ---- Data ---- */
@@ -79,37 +78,60 @@ const EXPERIENCE: ExperienceItem[] = [
   },
 ];
 
+/*
+ * Project screenshots: place images in /public/projects/
+ * Recommended: 1280x960 or 4:3 ratio, .png or .webp
+ */
 const PROJECTS: Project[] = [
   {
     title: "Kiren",
     description: "E-commerce platform for a clothing store. Full-stack application with auth, cart, payments, and admin dashboard.",
     stack: ["React", "Next.js", "Tailwind", "Supabase"],
+    image: "/projects/kiren.jpg",
     year: "2026",
   },
   {
     title: "Marra's",
     description: "Management system for a healthy food business. Orders, inventory, and customer tracking in one place.",
     stack: ["React", "Next.js", "Tailwind", "Supabase"],
+    image: "/projects/marras.jpg",
     year: "2026",
   },
   {
-    title: "Fotearte",
-    description: "Landing page for a photography studio. Clean, visual-first design showcasing portfolio and services.",
-    stack: ["React", "Next.js", "Tailwind"],
-    url: "https://fotearte.com",
-    year: "2023",
+    title: "Zentry",
+    description: "A modern web experience with rich animations and interactive elements. Focused on visual storytelling.",
+    stack: ["React", "Next.js", "Tailwind", "GSAP"],
+    image: "/projects/zentry.jpg",
+    year: "2025",
   },
   {
-    title: "Patriota",
-    description: "Digital catalog with full backend infrastructure. Product management, filtering, and responsive storefront.",
-    stack: ["React", "Next.js", "Node.js", "MongoDB"],
+    title: "Xora",
+    description: "A sleek, animated landing page with modern UI patterns and smooth scroll-driven interactions.",
+    stack: ["React", "Next.js", "Tailwind"],
+    image: "/projects/xora.jpg",
     year: "2025",
   },
   {
     title: "Lunardi",
     description: "Landing page for a brand. Minimal, polished design focused on visual identity and conversion.",
     stack: ["React", "Next.js", "Tailwind"],
+    image: "/projects/lunardi.jpg",
     year: "2025",
+  },
+  {
+    title: "Patriota",
+    description: "Digital catalog with full backend infrastructure. Product management, filtering, and responsive storefront.",
+    stack: ["React", "Next.js", "Node.js", "MongoDB"],
+    image: "/projects/patriota.jpg",
+    year: "2025",
+  },
+  {
+    title: "Fotearte",
+    description: "Landing page for a photography studio. Clean, visual-first design showcasing portfolio and services.",
+    stack: ["React", "Next.js", "Tailwind"],
+    image: "/projects/fotearte.jpg",
+    url: "https://fotearte.com",
+    year: "2023",
   },
 ];
 
@@ -118,7 +140,6 @@ const PROJECTS: Project[] = [
 export default function Home() {
   const { isDark } = useThemeStore();
 
-  /* refs: hero */
   const tagRef = useRef<HTMLParagraphElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const roleRef = useRef<HTMLParagraphElement>(null);
@@ -126,7 +147,6 @@ export default function Home() {
   const creditsRef = useRef<HTMLDivElement>(null);
   const yearRef = useRef<HTMLParagraphElement>(null);
 
-  /* refs: about */
   const aboutRef = useRef<HTMLElement>(null);
   const aboutLabelRef = useRef<HTMLParagraphElement>(null);
   const aboutTitleRef = useRef<HTMLHeadingElement>(null);
@@ -135,21 +155,18 @@ export default function Home() {
   const aboutBioRef = useRef<HTMLDivElement>(null);
   const aboutDetailsRef = useRef<HTMLDivElement>(null);
 
-  /* refs: experience */
   const expRef = useRef<HTMLDivElement>(null);
   const expLabelRef = useRef<HTMLParagraphElement>(null);
   const expTitleRef = useRef<HTMLHeadingElement>(null);
   const expLineRef = useRef<HTMLDivElement>(null);
   const expCardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  /* refs: projects */
   const projRef = useRef<HTMLElement>(null);
   const projLabelRef = useRef<HTMLParagraphElement>(null);
   const projTitleRef = useRef<HTMLHeadingElement>(null);
   const projLineRef = useRef<HTMLDivElement>(null);
   const projTvRef = useRef<HTMLDivElement>(null);
 
-  /* tokens */
   const bg = isDark ? "#0c0a09" : "#faf5f0";
   const textPrimary = isDark ? "rgba(250,245,240,0.85)" : "rgba(26,22,20,0.9)";
   const textMuted = isDark ? "rgba(250,245,240,0.3)" : "rgba(26,22,20,0.25)";
@@ -157,7 +174,7 @@ export default function Home() {
   const borderSoft = isDark ? "rgba(250,245,240,0.06)" : "rgba(26,22,20,0.06)";
   const borderMed = isDark ? "rgba(250,245,240,0.1)" : "rgba(26,22,20,0.1)";
 
-  /* ---- Hero animation ---- */
+  /* Hero animation */
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" }, delay: 1.6 });
@@ -171,7 +188,7 @@ export default function Home() {
     return () => ctx.revert();
   }, []);
 
-  /* ---- About scroll animation ---- */
+  /* About animation */
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ scrollTrigger: { trigger: aboutRef.current, start: "top 75%", toggleActions: "play none none none" }, defaults: { ease: "power3.out" } });
@@ -185,7 +202,7 @@ export default function Home() {
     return () => ctx.revert();
   }, []);
 
-  /* ---- Experience scroll animation ---- */
+  /* Experience animation */
   useEffect(() => {
     const ctx = gsap.context(() => {
       const headerTl = gsap.timeline({ scrollTrigger: { trigger: expRef.current, start: "top 80%", toggleActions: "play none none none" }, defaults: { ease: "power3.out" } });
@@ -199,7 +216,7 @@ export default function Home() {
     return () => ctx.revert();
   }, []);
 
-  /* ---- Projects scroll animation ---- */
+  /* Projects animation */
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ scrollTrigger: { trigger: projRef.current, start: "top 75%", toggleActions: "play none none none" }, defaults: { ease: "power3.out" } });
@@ -334,13 +351,11 @@ export default function Home() {
           <TVScene projects={PROJECTS} isDark={isDark} />
         </div>
 
-        {/* Instruction hint */}
         <p className="text-center mt-6" style={{ fontSize: 10, letterSpacing: "0.15em", color: textMuted, fontFamily: "var(--font-mono)" }}>
           ← → arrow keys or buttons to switch channels
         </p>
       </section>
 
-      {/* Placeholder */}
       <section id="contact" className="min-h-screen" />
     </div>
   );
