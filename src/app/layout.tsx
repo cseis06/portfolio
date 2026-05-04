@@ -1,42 +1,42 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Space_Grotesk, Instrument_Serif } from "next/font/google";
+import { Montserrat, Luxurious_Script, Barrio } from "next/font/google";
 import "./globals.css";
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  variable: "--font-montserrat",
+  display: "swap",
+  axes: ["wght"],
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-display",
+const luxuriousScript = Luxurious_Script({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: "400",
+  variable: "--font-luxurious",
+  display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-serif",
+const barrio = Barrio({
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
+  weight: "400",
+  variable: "--font-barrio",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Dani Brunetto | Web Developer",
-  description:
-    "Crafting interfaces from the future — Dani Brunetto's web developer portfolio.",
+  title: "Daniela Brunetto — Portfolio",
+  description: "An analog dispatch from a digital hand.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${jetbrainsMono.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable} antialiased`}
-      >
+    <html
+      lang="en"
+      className={`${montserrat.variable} ${luxuriousScript.variable} ${barrio.variable}`}
+    >
+      <body className="bg-bone text-ink font-sans antialiased">
         {children}
       </body>
     </html>

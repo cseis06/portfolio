@@ -1,44 +1,39 @@
 @import "tailwindcss";
 
 @theme {
-  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
-  --font-display: "Space Grotesk", system-ui, sans-serif;
-  --font-serif: "Instrument Serif", "Georgia", serif;
+  /* Palette — Analog Gothic */
+  --color-blood: #991b1b;
+  --color-bone: #fafaf9;
+  --color-ink: #0c0a09;
+  --color-oxblood: #450a0a;
+  --color-ash: #44403c;
 
-  --color-accent: #dc2626;
-  --color-accent-soft: rgba(220, 38, 38, 0.12);
+  /* Typography */
+  --font-sans: var(--font-montserrat), system-ui, sans-serif;
+  --font-script: var(--font-luxurious), "Apple Chancery", cursive;
+  --font-display: var(--font-barrio), "Impact", sans-serif;
+
+  /* Animations */
+  --animate-cursor-blink: cursor-blink 1.05s step-end infinite;
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+@keyframes cursor-blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
-body {
-  margin: 0;
-  font-family: var(--font-mono);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@layer base {
+  ::selection {
+    background-color: var(--color-blood);
+    color: var(--color-bone);
+  }
 
-::selection {
-  background: rgba(220, 38, 38, 0.2);
-  color: inherit;
-}
+  body {
+    background-color: var(--color-bone);
+    color: var(--color-ink);
+  }
 
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(220, 38, 38, 0.15);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(220, 38, 38, 0.3);
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
 }
