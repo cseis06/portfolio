@@ -187,21 +187,6 @@ export default function About() {
         style={grainStyle}
       />
 
-      {/* Editorial corners */}
-      <div className="absolute top-6 left-6 md:top-10 md:left-12 z-10 pointer-events-none">
-        <p
-          data-about-eyebrow
-          className="font-sans text-[10px] uppercase tracking-[0.4em] text-bone/50"
-        >
-          § II — Dossier
-        </p>
-      </div>
-      <div className="absolute top-6 right-6 md:top-10 md:right-12 z-10 pointer-events-none text-right">
-        <p className="font-sans text-[10px] uppercase tracking-[0.4em] text-bone/50">
-          side a
-        </p>
-      </div>
-
       <div className="relative z-10 mx-auto max-w-7xl mt-16 md:mt-20">
         {/* Header */}
         <header data-about-header className="mb-16 md:mb-10">

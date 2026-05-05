@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Luxurious_Script, Barrio } from "next/font/google";
 import "./globals.css";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -31,11 +32,14 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+
+  
   return (
     <html
       lang="en"
       className={`${montserrat.variable} ${luxuriousScript.variable} ${barrio.variable}`}
     >
+      <ScrollToTop />
       <body className="bg-bone text-ink font-sans antialiased">
         {children}
       </body>
