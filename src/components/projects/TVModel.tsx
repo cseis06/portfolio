@@ -17,7 +17,7 @@ useTexture.preload(projects.map((p) => p.image));
 // Check the console log on first load — `frontFaceZ` tells you what
 // value to start above. A small forward bias (~0.005) avoids z-fighting.
 const SCREEN_POSITION: [number, number, number] = [0.21, 0.11, 0.241];
-const SCREEN_SIZE: [number, number] = [0.76, 0.585];
+const SCREEN_SIZE: [number, number] = [0.765, 0.615];
 
 const REST_POSITION: [number, number, number] = [-0.2, 0, 0];
 
@@ -136,6 +136,8 @@ export default function TVModel() {
   const isReady = useProjectsStore((s) => s.isReady);
   const setReady = useProjectsStore((s) => s.setReady);
   const currentChannel = useProjectsStore((s) => s.currentChannel);
+  const powerState = useProjectsStore((s) => s.powerState);
+  const isPaused = useProjectsStore((s) => s.isPaused);
   const currentTexture = textures[currentChannel - 1] ?? textures[0];
 
   useEffect(() => {
@@ -180,7 +182,22 @@ export default function TVModel() {
     const mat = staticMatRef.current;
     if (!mat) return;
     mat.uniforms.uTime.value = state.clock.elapsedTime;
-    const target = !isReady || isTransitioning ? 1 : 0;
+
+    // Static plane visibility:
+    //   off    → 0 (screen is plain black, image plane handles it)
+    //   paused → 0 (image holds, no noise)
+    //   normal → 0 unless transitioning or warming up
+    let target: number;
+    if (powerState === "off") {
+      target = 0;
+    } else if (isPaused) {
+      target = 0;
+    } else if (!isReady || isTransitioning) {
+      target = 1;
+    } else {
+      target = 0;
+    }
+
     const speed = isTransitioning || !isReady ? 25 : 15;
     mat.uniforms.uOpacity.value = THREE.MathUtils.damp(
       mat.uniforms.uOpacity.value,
@@ -200,10 +217,11 @@ export default function TVModel() {
       <mesh position={SCREEN_POSITION} renderOrder={1}>
         <planeGeometry args={SCREEN_SIZE} />
         <meshBasicMaterial
-          map={currentTexture}
+          map={powerState === "off" ? null : currentTexture}
+          color={powerState === "off" ? "#000000" : "#ffffff"}
           toneMapped={false}
           transparent
-          opacity={0.75}
+          opacity={powerState === "off" ? 1 : 0.75}
         />
       </mesh>
 

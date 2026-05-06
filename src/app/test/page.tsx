@@ -1,11 +1,12 @@
-import Projects from "@/components/projects/Projects";
+
+import Experience from "@/components/experience/Experience";
 
 
 export default function Home() {
 
   return (
     <>
-      <Projects />
+      <Experience />
     </>
   );
 }
