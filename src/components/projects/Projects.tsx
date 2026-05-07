@@ -38,11 +38,22 @@ export default function Projects() {
     );
 
     const mountIO = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setShouldMount(true);
-      },
-      { rootMargin: "200px" }
-    );
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setShouldMount(true);
+        // The TVScene's WebGL canvas changes layout. Notify any
+        // ScrollTriggers downstream (like Experience's pin) to remeasure.
+        requestAnimationFrame(() => {
+          if (typeof window !== "undefined") {
+            import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+              ScrollTrigger.refresh();
+            });
+          }
+        });
+      }
+    },
+    { rootMargin: "200px" }
+  );
 
     preloadIO.observe(sectionRef.current);
     mountIO.observe(sectionRef.current);

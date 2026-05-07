@@ -65,8 +65,8 @@ export default function Subtitle({
   return (
     <p
       className="
-        font-sans text-xs md:text-sm
-        tracking-wider text-blood/85
+        font-sans text-xs md:text-base
+        tracking-wider text-bone/85 drop-shadow-[2.5px_1.3px_1.3px_rgba(0,0,0,0.9)]
         text-center select-none
         leading-relaxed
       "
@@ -80,7 +80,7 @@ export default function Subtitle({
             className="
               ml-1 inline-block
               w-[0.5em] h-[1em]
-              bg-blood/85 align-text-bottom
+              bg-bone/85 align-text-bottom
               animate-cursor-blink
             "
           />

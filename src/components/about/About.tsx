@@ -23,21 +23,6 @@ const grainStyle: CSSProperties = {
     "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='1 1 1 0 0  1 1 1 0 0  1 1 1 0 0  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
 };
 
-/**
- * Aging discoloration — overlapping low-opacity ellipses in palette tones.
- * Placement is asymmetric on purpose (stains aren't symmetrical). The warm
- * amber note in the middle suggests yellowing/oxidation.
- */
-const stainStyle: CSSProperties = {
-  backgroundImage: [
-    "radial-gradient(ellipse 55% 45% at 12% 18%, rgba(153, 27, 27, 0.10), transparent 65%)",
-    "radial-gradient(ellipse 70% 55% at 88% 78%, rgba(69, 10, 10, 0.18), transparent 60%)",
-    "radial-gradient(ellipse 45% 40% at 78% 22%, rgba(68, 64, 60, 0.20), transparent 70%)",
-    "radial-gradient(ellipse 50% 35% at 22% 75%, rgba(153, 27, 27, 0.08), transparent 75%)",
-    "radial-gradient(ellipse 30% 25% at 60% 50%, rgba(180, 100, 50, 0.05), transparent 80%)",
-  ].join(", "),
-};
-
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -167,18 +152,12 @@ export default function About() {
       id="about"
       aria-label="About — Daniela Brunetto"
       className="
-        relative min-h-screen w-full
+        flex justify-center items-center min-h-dvh w-full
         bg-ink text-bone
-        px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32
+        py-20 md:py-32 lg:py-52 m-0
         overflow-hidden
       "
     >
-      {/* Aging stains — soft color discolorations, lowest texture layer */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={stainStyle}
-      />
 
       {/* Film grain — fine noise, screen-blended over stains for dust-on-dark feel */}
       <div
@@ -187,18 +166,12 @@ export default function About() {
         style={grainStyle}
       />
 
-      <div className="relative z-10 mx-auto max-w-7xl mt-16 md:mt-20">
+      <div className="w-full flex flex-col items-center justify-center z-10">
         {/* Header */}
-        <header data-about-header className="mb-16 md:mb-10">
-          <p
-            data-about-script
-            className="font-script text-blood text-5xl md:text-7xl leading-none mb-1 -ml-1"
-          >
-            Hi,
-          </p>
+        <header data-about-header className="mb-6 md:mb-10 lg:">
           <h2
             ref={titleRef}
-            className="font-display text-bone text-7xl md:text-[9rem] leading-[0.9] uppercase relative"
+            className="font-display text-bone text-7xl md:text-6xl lg:text-8xl xl:text-9xl leading-[0.9] uppercase relative"
             aria-label={TITLE}
           >
             {/* Invisible placeholder reserves layout space — prevents shift */}
@@ -226,15 +199,15 @@ export default function About() {
         </header>
 
         {/* Two-column grid — 7/5, stacks on mobile */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="w-dvw flex flex-col lg:flex-row items-center justify-center gap-10">
           {/* LEFT: text */}
           <div
             data-about-text
-            className="lg:col-span-6 space-y-7 max-w-[58ch]"
+            className="space-y-5 max-w-full lg:max-w-[580px] xl:max-w-[780px] p-8 lg:p-12"
           >
             <p
               data-about-paragraph
-              className="font-sans text-base md:text-lg leading-[1.75] text-bone/90"
+              className="font-sans text-xs md:text-sm lg:text-base xl:text-lg leading-[1.75] text-bone/90 pl-12"
             >
               I&apos;m{" "}
               <span className="text-blood font-medium">Daniela Brunetto</span>,
@@ -246,54 +219,30 @@ export default function About() {
 
             <p
               data-about-paragraph
-              className="font-sans text-base md:text-lg leading-[1.75] text-bone/90"
+              className="font-sans text-xs md:text-sm lg:text-base xl:text-lg leading-[1.75] text-bone/90 pr-24"
             >
               I believe a website is more than just a virtual space where we
               present &ldquo;something&rdquo; or &ldquo;someone.&rdquo; I dare
               to say that, in the right eyes, it can be{" "}
-              <span className="font-script text-blood text-3xl md:text-4xl leading-[0.7] align-baseline mx-0.5">
+              <span className="font-script text-blood text-2xl md:text-3xl lg:text-4xl leading-[0.7] align-baseline mx-0.5">
                 a cradle of art
               </span>
               . By this, I don&apos;t mean specifically any of the seven
               traditional fine arts, but rather that it&apos;s another form of
               expression that, in modern times, has come to us to help us
-              convey what we want to communicate to people, and that&apos;s
-              precisely my goal.
+              convey what we want to communicate to people, which is
+              precisely my goal!
             </p>
-
-            <p
-              data-about-paragraph
-              className="font-sans text-base md:text-lg leading-[1.75] text-bone/90"
-            >
-              Using tools like JavaScript, TypeScript, React.js, Tailwind CSS,
-              Node.js, and Express, I create enjoyable user experiences that
-              connect the sender with the receiver. Whether it&apos;s a
-              landing page, a personal website, a management system, an
-              e-commerce site, or more, my aim is to nurture the seeds planted
-              in our minds.
-            </p>
-
-            <div
-              data-about-signature
-              className="pt-6 flex items-baseline gap-3"
-            >
-              <span className="font-sans text-[10px] uppercase tracking-[0.35em] text-bone/40">
-                Sgd.
-              </span>
-              <p className="font-script text-bone text-3xl md:text-4xl">
-                Daniela Brunetto
-              </p>
-            </div>
           </div>
 
           {/* RIGHT: cassettes — larger, no caption */}
-          <aside className="lg:col-span-6 flex justify-center lg:justify-start">
+          <aside className="flex justify-center lg:justify-end">
             <div
               data-about-cassettes
-              className="relative w-full max-w-[1024px] will-change-transform"
+              className="w-full max-w-[1024px] will-change-transform"
             >
               <Image
-                src="/about/skills.png"
+                src="/about/the-man.png"
                 alt="A stack of cassette tapes labeled with my technical skills."
                 width={1024}
                 height={1024}

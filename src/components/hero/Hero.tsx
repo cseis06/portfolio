@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, type CSSProperties } from "react";
 import { useHeroStore } from "@/lib/stores/heroStore";
 import StickyNote from "./StickyNote";
 import FaceStack from "./FaceStack";
@@ -10,6 +10,7 @@ export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const noteRemoved = useHeroStore((s) => s.noteRemoved);
   const revealComplete = useHeroStore((s) => s.revealComplete);
+  
 
   // Scroll lock — body + html overflow until note is gone.
   useEffect(() => {
@@ -52,18 +53,6 @@ export default function Hero() {
       <FaceStack containerRef={containerRef} />
 
       {!noteRemoved && <StickyNote />}
-
-      {/* Editorial corners */}
-      <div className="absolute top-6 left-6 md:top-8 md:left-8 pointer-events-none">
-        <p className="font-sans text-[10px] uppercase tracking-[0.35em] text-ink/70">
-          Vol. I
-        </p>
-      </div>
-      <div className="absolute top-6 right-6 md:top-8 md:right-8 pointer-events-none text-right">
-        <p className="font-sans text-[10px] uppercase tracking-[0.35em] text-ink/70">
-          mmxxvi · dispatch nº 001
-        </p>
-      </div>
 
       {/* Subtitles — film-style, bottom center */}
       <div
