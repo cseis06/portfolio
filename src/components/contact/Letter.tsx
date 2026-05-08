@@ -28,7 +28,7 @@ const Letter = forwardRef<HTMLDivElement, LetterProps>(function Letter(
   return (
     <div
       ref={ref}
-      className="relative w-full top-0 max-w-[640px] aspect-[5/7] mx-auto"
+      className="relative w-full top-0 max-w-[1024px] aspect-[5/7] mx-auto"
     >
       {/* Paper background */}
       <Image

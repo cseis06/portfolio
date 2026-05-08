@@ -9,7 +9,7 @@ import { contactLinks } from "@/lib/data/contact";
  */
 export default function ContactRail() {
   return (
-    <ul className="space-y-6" aria-label="Other ways to reach me">
+    <ul className="space-y-5" aria-label="Other ways to reach me">
       {contactLinks.map((link) => (
         <li key={link.id} className="group">
           <a
@@ -46,6 +46,53 @@ export default function ContactRail() {
           </a>
         </li>
       ))}
+      <li>
+        <p
+          className="
+            font-sans text-[10px] uppercase tracking-[0.4em]
+            text-ink/45 group-hover:text-blood
+            transition-colors
+            mb-1
+          "
+        >
+          ▸ You can also
+        </p>
+        <a
+          data-exp-cv
+          href="/cv/daniela-brunetto-cv.pdf"
+          download
+          className="
+            group inline-flex items-center gap-4
+            px-5 py-4
+            bg-bone text-ink
+            border-2 border-bone
+            hover:bg-blood hover:text-bone hover:border-blood
+            transition-colors duration-200
+            shadow-[4px_4px_0_0_rgba(153,27,27,0.6)]
+            hover:shadow-[6px_6px_0_0_rgba(250,250,249,0.2)]
+          "
+          aria-label="Download CV (PDF)"
+        >
+          <span className="flex flex-col items-start">
+            <span className="font-sans text-[10px] uppercase tracking-[0.35em] opacity-70">
+              File · Annex A
+            </span>
+            <span className="font-display text-2xl uppercase leading-none mt-1">
+              Download CV
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            className="
+              text-3xl leading-none
+              transition-transform duration-200
+              group-hover:translate-y-0.5
+            "
+          >
+            ↓
+          </span>
+        </a>
+      </li>
     </ul>
   );
 }

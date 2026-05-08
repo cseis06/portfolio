@@ -184,57 +184,55 @@ export default function Contact() {
       id="contact"
       aria-label="Contact — Daniela Brunetto"
       className="
-        min-h-screen w-full
+        relative min-h-screen w-full
         bg-bone text-ink
+        px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32
         overflow-hidden
       "
     >
-      <div className="w-full flex flex-row items-start justify-center lg:flex-col gap-12 z-10">
-        <header data-contact-header className="">
-          <h2
-            data-contact-display
-            className="font-display text-ink text-7xl md:text-6xl lg:text-8xl xl:text-9xl leading-[0.9] uppercase"
-          >
-            Contact me
-          </h2>
-        </header>
+      <div className="mx-auto max-w-7xl">
+        {/* Two-column on lg+: 5/7 split. Stacks on mobile. */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* LEFT — header, rail, sign-off */}
+          <div className="lg:col-span-5 flex flex-col gap-12">
+            <header data-contact-header>
+              <h2
+                data-contact-display
+                className="font-display text-ink text-6xl md:text-7xl xl:text-8xl leading-[0.9] uppercase"
+              >
+                Contact
+              </h2>
+            </header>
 
-        {/* LEFT — Contact rail */}
-        <aside
-          data-contact-rail
-        >
-          <ContactRail />
+            <aside data-contact-rail>
+              <ContactRail />
 
-          <GlitchText>
-            <p className="text-blood/80 text-2xl md:text-xl mt-12">
-              Or simply post a letter.
-            </p>
-          </GlitchText>
-        </aside>
+              <GlitchText>
+                <p className="text-blood/80 text-2xl md:text-xl mt-12">
+                  Or simply post a letter.
+                </p>
+              </GlitchText>
+            </aside>
+          </div>
 
-        {/* RIGHT — Letter + seal. Lifted out of grid flow, anchored to the
-            section so its top aligns with the header row, not the row below. */}
-        <div>
-          <div
-            data-contact-letter
-            className="
-              lg:col-span-8 relative
-              lg:absolute lg:top-[-28] lg:right-6 lg:left-auto
-              lg:w-[58%] xl:w-[45%]
-              lg:max-w-[760px]
-            "
-          >
-            <Letter
-              ref={letterRef}
-              name={fields.name}
-              email={fields.email}
-              message={fields.message}
-              status={status}
-              errorMsg={errorMsg}
-              onUpdate={update}
-              onSubmit={send}
-            />
-            <WaxSeal ref={sealRef} />
+          {/* RIGHT — letter + seal. Sized by its column, centered within it. */}
+          <div className="w-full lg:col-span-7 flex justify-start lg:justify-end">
+            <div
+              data-contact-letter
+              className="relative -top-6 lg:-top-12 w-full max-w-dvw lg:max-w-[540px]"
+            >
+              <Letter
+                ref={letterRef}
+                name={fields.name}
+                email={fields.email}
+                message={fields.message}
+                status={status}
+                errorMsg={errorMsg}
+                onUpdate={update}
+                onSubmit={send}
+              />
+              <WaxSeal ref={sealRef} />
+            </div>
           </div>
         </div>
       </div>

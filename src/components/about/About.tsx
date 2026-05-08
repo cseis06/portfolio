@@ -152,7 +152,7 @@ export default function About() {
       id="about"
       aria-label="About — Daniela Brunetto"
       className="
-        flex justify-center items-center min-h-dvh w-full
+        relative min-h-dvh w-full
         bg-ink text-bone
         py-20 md:py-32 lg:py-52 m-0
         overflow-hidden
@@ -166,7 +166,7 @@ export default function About() {
         style={grainStyle}
       />
 
-      <div className="w-full flex flex-col items-center justify-center z-10">
+      <div className="w-full min-h-full flex flex-col items-center justify-center z-10">
         {/* Header */}
         <header data-about-header className="mb-6 md:mb-10 lg:">
           <h2
