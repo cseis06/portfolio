@@ -52,7 +52,7 @@ export default function TVButtons() {
           "
         >
           <Image
-            src={`/projects/button-${b.name}.png`}
+            src={`/projects/${b.name}.png`}
             alt=""
             fill
             sizes="(max-width: 768px) 56px, 64px"

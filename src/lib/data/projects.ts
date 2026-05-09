@@ -24,6 +24,36 @@ export const projects: Project[] = [
     image: "/projects/fotearte.jpg",
   },
   {
+    id: "zentry",
+    channel: 4,
+    title: "Zentry",
+    kind: "Brand Experience",
+    year: "2024",
+    description:
+      "Placeholder description for Zentry — replace before launch.",
+    image: "/projects/zentry.jpg",
+  },
+  {
+    id: "maras",
+    channel: 4,
+    title: "Marra's",
+    kind: "Brand Experience",
+    year: "2024",
+    description:
+      "Placeholder description for Zentry — replace before launch.",
+    image: "/projects/marras.jpg",
+  },
+  {
+    id: "lunardi",
+    channel: 4,
+    title: "Lunardi",
+    kind: "Brand Experience",
+    year: "2024",
+    description:
+      "Placeholder description for Zentry — replace before launch.",
+    image: "/projects/lunardi.jpg",
+  },
+  {
     id: "patriota",
     channel: 2,
     title: "Patriota",
@@ -44,13 +74,13 @@ export const projects: Project[] = [
     image: "/projects/xora.jpg",
   },
   {
-    id: "zentry",
+    id: "kiren",
     channel: 4,
-    title: "Zentry",
-    kind: "Brand Experience",
+    title: "Kiren",
+    kind: "E-commerce & Admin",
     year: "2024",
     description:
       "Placeholder description for Zentry — replace before launch.",
-    image: "/projects/zentry.jpg",
+    image: "/projects/kiren.jpg",
   },
 ];
