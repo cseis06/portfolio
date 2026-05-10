@@ -9,6 +9,7 @@ import WaxSeal from "./WaxSeal";
 import ContactRail from "./ContactRail";
 import { useContactForm } from "@/hooks/useContactForm";
 import GlitchText from "../effects/GlitchText";
+import { useHeroStore } from "@/lib/stores/heroStore";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -20,12 +21,14 @@ export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const letterRef = useRef<HTMLDivElement>(null);
   const sealRef = useRef<HTMLDivElement>(null);
+  const noteRemoved = useHeroStore((s) => s.noteRemoved);
 
   const { fields, status, errorMsg, update, send, reset } = useContactForm();
 
   // Header reveals on scroll-in
   useGSAP(
     () => {
+      if (!noteRemoved) return;
       if (!sectionRef.current) return;
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
         return;
@@ -81,7 +84,7 @@ export default function Contact() {
         },
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [noteRemoved] }
   );
 
   // Send animation — runs whenever status flips to "sending" or "success"
@@ -186,7 +189,7 @@ export default function Contact() {
       className="
         relative min-h-screen w-full
         bg-bone text-ink
-        px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32
+        px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-36
         overflow-hidden
       "
     >

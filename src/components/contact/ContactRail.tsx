@@ -1,6 +1,7 @@
 "use client";
 
 import { contactLinks } from "@/lib/data/contact";
+import RollingLabel from "../ui/RollingLabel";
 
 /**
  * Side rail of contact methods. Styled to read like the address column
@@ -75,21 +76,11 @@ export default function ContactRail() {
         >
           <span className="flex flex-col items-start">
             <span className="font-sans text-[10px] uppercase tracking-[0.35em] opacity-70">
-              File · Annex A
+              File · PDF
             </span>
-            <span className="font-display text-2xl uppercase leading-none mt-1">
+            <RollingLabel className="font-display text-2xl uppercase mt-1">
               Download CV
-            </span>
-          </span>
-          <span
-            aria-hidden="true"
-            className="
-              text-3xl leading-none
-              transition-transform duration-200
-              group-hover:translate-y-0.5
-            "
-          >
-            ↓
+            </RollingLabel>
           </span>
         </a>
       </li>

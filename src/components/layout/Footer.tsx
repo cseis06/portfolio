@@ -1,5 +1,7 @@
 "use client";
 
+import RollingLabel from "../ui/RollingLabel";
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -28,7 +30,8 @@ export default function Footer() {
 
         {/* CTA — right, stamp-style */}
         <a
-          href="#contact"
+          href="https://api.whatsapp.com/send/?phone=595976167226&text&type=phone_number&app_absent=0"
+          target="_blank"
           className="
             group inline-flex items-center gap-2
             md:flex-shrink-0
@@ -42,17 +45,7 @@ export default function Footer() {
           "
           aria-label="Jump to the contact section"
         >
-          <span>Write to me</span>
-          <span
-            aria-hidden="true"
-            className="
-              text-base leading-none
-              transition-transform duration-200
-              group-hover:translate-x-0.5
-            "
-          >
-            ↗
-          </span>
+          <RollingLabel>Write to me ↗</RollingLabel>
         </a>
       </div>
     </footer>

@@ -6,10 +6,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PaperTexture from "../effects/PaperTexture";
 import { experience } from "@/lib/data/experience";
+import { useHeroStore } from "@/lib/stores/heroStore";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
+
+
+const noteRemoved = useHeroStore((s) => s.noteRemoved);
 
 const TITLE = "Experience";
 const SCROLL_PER_ENTRY = 600; // px of virtual scroll allotted to each entry
@@ -21,6 +25,7 @@ export default function Experience() {
 
   useGSAP(
     () => {
+      if (!noteRemoved) return;
       if (!sectionRef.current) return;
 
       // Refresh once everything (fonts, images, async-mounted scenes) settles.
@@ -151,7 +156,7 @@ export default function Experience() {
       // for anyone reading this file.
       void transitionCount;
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [noteRemoved] }
   );
 
   return (

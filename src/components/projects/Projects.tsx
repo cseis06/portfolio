@@ -7,6 +7,7 @@ import TVButtons from "./TVButtons";
 import GlitchText from "@/components/effects/GlitchText";
 import { useProjectsStore } from "@/lib/stores/projectsStore";
 import { projects } from "@/lib/data/projects";
+import RollingLabel from "../ui/RollingLabel";
 
 const TVScene = dynamic(() => import("./TVScene"), {
   ssr: false,
@@ -123,14 +124,14 @@ export default function Projects() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
-                  inline-block mt-3
+                  group inline-flex inline-block mt-3
                   font-sans text-xs uppercase tracking-[0.3em] text-blood
                   border-b border-blood/40
                   hover:text-bone hover:border-bone/60
                   transition-colors pb-1
                 "
               >
-                Visit ↗
+                <RollingLabel>Visit ↗</RollingLabel>
               </a>
             )}
           </div>
