@@ -1,95 +1,46 @@
-import "@/lib/globals.css";
-
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Montserrat, Luxurious_Script, Barrio } from "next/font/google";
+import "./globals.css";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 
-import { Toaster } from "@/components/ui/sonner";
-import { ThemeProvider } from "@/components/ui/theme-provider";
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
 
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
+const luxuriousScript = Luxurious_Script({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-luxurious",
+  display: "swap",
+});
+
+const barrio = Barrio({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-barrio",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://safetpojskic.com"),
-  title: "Daniela Brunetto",
-  description: "Welcome to my personal portfolio!",
-  applicationName: "Daniela Brunetto",
-  keywords: [
-    "Daniela Brunetto",
-    "portfolio",
-    "personal",
-    "website",
-    "developer",
-    "designer",
-    "software",
-    "frontend",
-  ],
-  openGraph: {
-    siteName: "Daniela Brunetto",
-    title: "Daniela Brunetto",
-    description: "Welcome to my personal portfolio!",
-    type: "website",
-    images: ["/opengraph-image.png"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@abd123",
-    title: "Daniela Brunetto",
-    description: "Welcome to my personal portfolio!",
-    images: ["/opengraph-image.png"],
-  },
-  icons: [
-    {
-      rel: "icon",
-      type: "image/png",
-      sizes: "192x192",
-      url: "/favicon/android-chrome-192x192.png",
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      sizes: "512x512",
-      url: "/favicon/android-chrome-512x512.png",
-    },
-    {
-      rel: "apple-touch-icon",
-      url: "/favicon/apple-touch-icon.png",
-    },
-    {
-      rel: "icon",
-      type: "image/x-icon",
-      url: "/favicon/favicon.ico",
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      sizes: "16x16",
-      url: "/favicon/favicon-16x16.png",
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      sizes: "32x32",
-      url: "/favicon/favicon-32x32.png",
-    },
-  ],
+  title: "Daniela Brunetto — Portfolio",
+  description: "An analog dispatch from a digital hand.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
+
+  
   return (
-    <html lang="en">
-      <body className={spaceGrotesk.className}>
-        <Analytics />
-        <SpeedInsights />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-          <Toaster />
-        </ThemeProvider>
+    <html
+      lang="en"
+      className={`${montserrat.variable} ${luxuriousScript.variable} ${barrio.variable}`}
+    >
+      <ScrollToTop />
+      <body className="bg-bone text-ink font-sans antialiased">
+        {children}
       </body>
     </html>
   );
