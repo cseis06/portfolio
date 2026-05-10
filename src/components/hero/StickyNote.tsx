@@ -85,7 +85,7 @@ export default function StickyNote() {
 
   return (
     <div className="absolute inset-0 grid place-items-center pointer-events-none">
-      <div className="relative w-[345px] aspect-[10/7] -translate-y-[62%]">
+      <div className="relative w-[clamp(180px,40vw,345px)] aspect-[10/7] -translate-y-[62%]">
         <button
           ref={noteRef}
           type="button"

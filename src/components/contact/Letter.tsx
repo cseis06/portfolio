@@ -32,7 +32,7 @@ const Letter = forwardRef<HTMLDivElement, LetterProps>(function Letter(
     >
       {/* Paper background */}
       <Image
-        src="/contact/letter.png"
+        src="/contact/letter.jpg"
         alt=""
         fill
         priority
