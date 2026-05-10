@@ -5,7 +5,6 @@ import {
   useRef,
   useState,
   type CSSProperties,
-  type ElementType,
   type ReactNode,
 } from "react";
 
@@ -36,9 +35,28 @@ const VARIANTS: readonly Variant[] = [
   // { className: "font-script", style: { fontWeight: 400 } },           // Luxurious
 ];
 
+// Narrow set of HTML elements that accept children. Excludes void elements
+// like br/img/input/hr where children would be invalid HTML anyway.
+type GlitchTag =
+  | "span"
+  | "div"
+  | "p"
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "strong"
+  | "em"
+  | "li"
+  | "a"
+  | "button"
+  | "label";
+
 interface GlitchTextProps {
   children: ReactNode;
-  as?: ElementType;
+  as?: GlitchTag;
   interval?: number;
   className?: string;
   enabled?: boolean;
@@ -64,7 +82,6 @@ export default function GlitchText({
     }
 
     const id = window.setInterval(() => {
-      // Avoid same variant twice in a row — feels more glitchy
       let next: number;
       do {
         next = Math.floor(Math.random() * VARIANTS.length);

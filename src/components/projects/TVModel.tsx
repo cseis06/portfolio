@@ -67,10 +67,16 @@ export default function TVModel() {
   useEffect(() => {
     if (!textures || textures.length === 0) return;
     const screenAspect = SCREEN_SIZE[0] / SCREEN_SIZE[1];
+
     textures.forEach((t) => {
-      if (!t.image) return;
+      // Narrow t.image to HTMLImageElement. drei's useTexture always
+      // produces HTMLImageElement for jpg/png sources, but the Three.js
+      // type is loose ({} since it could be any kind of image source).
+      if (!(t.image instanceof HTMLImageElement)) return;
+
       t.colorSpace = THREE.SRGBColorSpace;
       const imgAspect = t.image.width / t.image.height;
+
       if (imgAspect > screenAspect) {
         const scale = screenAspect / imgAspect;
         t.repeat.set(scale, 1);

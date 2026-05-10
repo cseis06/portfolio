@@ -7,7 +7,6 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
   display: "swap",
-  axes: ["wght"],
 });
 
 const luxuriousScript = Luxurious_Script({
