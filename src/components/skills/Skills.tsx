@@ -10,7 +10,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const FRAME_COUNT = 128;
+const FRAME_COUNT = 143;
 const FRAME_PATH = (i: number) => `/skills/${i}.jpg`;
 
 // Virtual scroll distance. Higher = slower playback per scroll wheel tick.

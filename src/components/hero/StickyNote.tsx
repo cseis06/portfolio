@@ -8,10 +8,11 @@ import { useHeroStore } from "@/lib/stores/heroStore";
 import { useSfx } from "@/hooks/useSfx";
 
 export default function StickyNote() {
-  const noteRef = useRef<HTMLButtonElement>(null);
+  // The ref now points to the visual note (a div), not the click target.
+  // This separation is the whole point of the refactor.
+  const noteRef = useRef<HTMLDivElement>(null);
   const { noteRemoved, removeNote } = useHeroStore();
 
-  // One-shot SFX. The asset bundles click + woosh in a single file.
   const { play: playClickWoosh } = useSfx("/sfx/click-woosh.mp3", {
     volume: 0.85,
   });
@@ -35,8 +36,6 @@ export default function StickyNote() {
   const handleFall = () => {
     if (noteRemoved || !noteRef.current) return;
 
-    // Fire inside the user gesture — guarantees the audio plays even
-    // on strict autoplay browsers (Safari, Firefox with hardening).
     playClickWoosh();
 
     const reduceMotion =
@@ -60,14 +59,12 @@ export default function StickyNote() {
     const tl = gsap.timeline({ onComplete: removeNote });
 
     tl
-      // 1. Pre-fall pop — the tape gives way.
       .to(noteRef.current, {
         rotation: -6,
         y: -12,
         duration: 0.18,
         ease: "power1.out",
       })
-      // 2. Gravity, drift, tumble.
       .to(noteRef.current, {
         y: typeof window !== "undefined" ? window.innerHeight + 300 : 1200,
         x: `+=${driftX}`,
@@ -75,7 +72,6 @@ export default function StickyNote() {
         duration: 1.35,
         ease: "power2.in",
       })
-      // 3. Fade out before fully off-screen.
       .to(
         noteRef.current,
         { opacity: 0, duration: 0.25, ease: "power1.out" },
@@ -84,22 +80,41 @@ export default function StickyNote() {
   };
 
   return (
-    <div className="absolute inset-0 grid place-items-center pointer-events-none">
-      <div className="relative w-[clamp(180px,40vw,345px)] aspect-[10/7] -translate-y-[62%]">
-        <button
-          ref={noteRef}
-          type="button"
-          onClick={handleFall}
-          aria-label="Remove the sticky note to reveal the portrait"
-          disabled={noteRemoved}
+    <>
+      {/* Full-section click target. Transparent, covers the viewport,
+          sits beneath the note visually but accepts clicks from anywhere.
+          Receives keyboard focus so Enter/Space still triggers the fall. */}
+      <button
+        type="button"
+        onClick={handleFall}
+        disabled={noteRemoved}
+        aria-label="Click anywhere to reveal the portrait"
+        className="
+          absolute inset-0 z-10
+          cursor-pointer
+          bg-transparent
+          focus-visible:outline-none
+          focus-visible:ring-2 focus-visible:ring-blood
+          focus-visible:ring-offset-4 focus-visible:ring-offset-bone
+        "
+      />
+
+      {/* The note itself — purely visual. pointer-events: none means
+          clicks pass THROUGH it to the overlay button beneath. */}
+      <div
+        ref={noteRef}
+        className="
+          absolute inset-0 z-20
+          grid place-items-center
+          pointer-events-none
+          will-change-transform
+        "
+      >
+        <div
           className="
-            relative block w-full h-full
-            pointer-events-auto cursor-pointer
-            outline-none
-            transition-[filter] duration-200
-            hover:[filter:drop-shadow(0_8px_18px_rgba(12,10,9,0.35))]
-            focus-visible:[filter:drop-shadow(0_0_0_3px_var(--color-blood))]
-            will-change-transform
+            relative
+            w-[clamp(180px,40vw,345px)] aspect-[10/7]
+            -translate-y-[62%]
           "
           style={{
             transform: "rotate(-7deg)",
@@ -108,16 +123,16 @@ export default function StickyNote() {
           }}
         >
           <Image
-            src="/hero/note.png"
+            src="/hero/notef.png"
             alt=""
             fill
             priority
-            sizes="(max-width: 768px) 60vw, 420px"
-            className="object-contain select-none pointer-events-none"
+            sizes="(max-width: 768px) 40vw, 345px"
+            className="object-contain select-none"
             draggable={false}
           />
-        </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
