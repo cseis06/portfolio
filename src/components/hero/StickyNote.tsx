@@ -34,6 +34,7 @@ export default function StickyNote() {
   );
 
   const handleFall = () => {
+    document.getElementById('portafolio')?.classList.remove('hidden')
     if (noteRemoved || !noteRef.current) return;
 
     playClickWoosh();
@@ -48,6 +49,7 @@ export default function StickyNote() {
         duration: 0.4,
         onComplete: removeNote,
       });
+
       return;
     }
 

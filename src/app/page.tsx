@@ -12,13 +12,15 @@ export default function Home() {
 
   return (
     <>
-      <Hero />
-      <ScrollOrchestrator />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
-      <Footer />
+        <Hero />
+        <div id="portafolio" className="hidden">
+          <ScrollOrchestrator />
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+          <Footer />
+        </div>
     </>
   );
 }

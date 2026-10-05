@@ -88,7 +88,7 @@ export default function Projects() {
         </div>
         <div className="lg:col-span-4 px-6 md:px-12 lg:px-20 py-0 lg:py-32 flex flex-col justify-center">
           <p className="font-script text-blood text-4xl md:text-6xl mb-1 -ml-1">
-            Tuning in now.
+            <br />
           </p>
           <h2 className="font-display text-bone text-7xl md:text-8xl lg:text-9xl  uppercase leading-[0.9] mb-8">
             Projects
@@ -103,7 +103,7 @@ export default function Projects() {
             aria-live="polite"
           >
             <p className="font-sans text-[10px] uppercase tracking-[0.35em] text-blood">
-              ▸ Channel {String(project.channel).padStart(2, "0")} ·{" "}
+              Channel {String(project.channel).padStart(2, "0")} ·{" "}
               {project.kind}
             </p>
 

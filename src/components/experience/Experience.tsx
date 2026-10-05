@@ -225,7 +225,7 @@ export default function Experience() {
 
             <a
               data-exp-cv
-              href="/cv/daniela-brunetto-cv.pdf"
+              href="/cv/DanielaBrunettoCV-2026.pdf"
               download
               className="
                 group inline-flex items-center gap-4

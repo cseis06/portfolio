@@ -45,7 +45,7 @@ export default function Footer() {
           "
           aria-label="Jump to the contact section"
         >
-          <RollingLabel>Write to me ↗</RollingLabel>
+          <RollingLabel>Text me ↗</RollingLabel>
         </a>
       </div>
     </footer>

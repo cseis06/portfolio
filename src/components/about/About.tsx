@@ -270,7 +270,7 @@ export default function About() {
             >
               I&apos;m{" "}
               <span className="text-blood font-medium">Daniela Brunetto</span>,
-              a web developer who turned her hobbies into a profession.
+              a web developer, UX/UI designer and QA tester, who turned her hobbies into a profession.
               Through code, I bring to life the ideas that swirl in our minds,
               acting as an intermediary between creativity and technical
               expertise.

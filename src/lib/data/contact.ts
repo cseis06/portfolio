@@ -17,14 +17,14 @@ export const contactLinks: ContactLink[] = [
   {
     id: "mail",
     label: "Mail",
-    display: "danimaibp1@gmail.com",
-    href: "mailto:danimaibp1@gmail.com",
+    display: "danielabrunetto6@gmail.com",
+    href: "mailto:danielabrunetto6@gmail.com",
   },
   {
     id: "instagram",
     label: "Instagram",
-    display: "@_danibrunetto1",
-    href: "https://instagram.com/_danibrunetto1",
+    display: "@_danibrunetto",
+    href: "https://instagram.com/_danibrunetto",
     external: true,
   },
   {

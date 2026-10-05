@@ -32,7 +32,7 @@ export default function ContactRail() {
                 mb-1
               "
             >
-              ▸ {link.label}
+              {link.label}
             </p>
             <p
               className="
@@ -56,11 +56,11 @@ export default function ContactRail() {
             mb-1
           "
         >
-          ▸ You can also
+          You can also
         </p>
         <a
           data-exp-cv
-          href="/cv/daniela-brunetto-cv.pdf"
+          href="/cv/DanielaBrunettoCV-2026.pdf"
           download
           className="
             group inline-flex items-center gap-4
